@@ -44,14 +44,14 @@ class MecanismoBusca:
             "cx": self.search_engine_id,
             "q": query,
             "tbm":"nws",
-            "tbs":"qdr:d",
+            "tbs":"qdr:w",
             **kwargs
         }
         
         search = GoogleSearch(params)
         results = search.get_dict()
-        snippets = [item['snippet'] for item in results['news_results']]
-        return snippets
+        urls = [item['link'] for item in results['news_results']]
+        return urls
     
 
     def google_search(self, query, **kwargs):

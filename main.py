@@ -9,6 +9,12 @@ from langchain.globals import set_verbose
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
+## QUERY MULTITERMOS
+
+#query = '"Hospital João XXIII" OR "HJXIII" OR "Maternidade Odete Valadares"'
+#results = serpapi_search(query)
+
+
 # Desativar a verbosidade do LangChain
 set_verbose(False)
 
@@ -25,6 +31,7 @@ buscador = MecanismoBusca(SERPPAPI_API_KEY)
 resultados = buscador.serpapi_search("Hospital João XXIII")
 
 
+
 ## Curadoria
 
 curador = CuradorConteudo(OPENAI_API_KEY)
@@ -34,5 +41,5 @@ conteudo_curado = curador.curar_conteudo(resultados)
 ## Resultado
 
 for item in conteudo_curado:
-    print(f"Snippet: {item['snippet']}")
+    print(f"URL: {item['url']}")
     print(f"Avaliação: {item['avaliacao']}\n")
